@@ -11,11 +11,13 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="{{route('boardgame.index')}}">Giochi da tavolo</a>
                 </li>
-                <li class="nav-item">
+
+
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
-                </li>
+                </li> --}}
                 @auth
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -28,7 +30,7 @@
                                     <button class="dropdown-item" type="submit">Logout</button>
                                 </form>
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href=" {{route('boardgame.create')}}">Inserisci un gioco</a></li>
                         </ul>
                     </li>
                 @endauth
@@ -40,7 +42,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('login') }}">Accedi</a></li>
                             <li><a class="dropdown-item" href="{{ route('register') }}">Registrati</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
                         </ul>
                     </li>
                 @endguest
