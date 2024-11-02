@@ -13,7 +13,7 @@ class BoardgameController extends Controller
      */
     public function index()
     {
-        $boardgames = Boardgame::orderBy('name','asc')->get();
+        $boardgames = Boardgame::orderBy('name', 'asc')->get();
         return view('boardgame.index', compact('boardgames'));
         //
     }
@@ -50,6 +50,7 @@ class BoardgameController extends Controller
      */
     public function show(Boardgame $boardgame)
     {
+        return view('boardgame.show', compact('boardgame'));
         //
     }
 
@@ -58,6 +59,7 @@ class BoardgameController extends Controller
      */
     public function edit(Boardgame $boardgame)
     {
+        return view('boardgame.edit', compact('boardgame'));
         //
     }
 
@@ -66,6 +68,11 @@ class BoardgameController extends Controller
      */
     public function update(Request $request, Boardgame $boardgame)
     {
+        $boardgame->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'type' => $request->type,
+        ]);
         //
     }
 

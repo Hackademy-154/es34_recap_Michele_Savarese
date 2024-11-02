@@ -11,7 +11,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('boardgame.index')}}">Giochi da tavolo</a>
+                    <a class="nav-link" href="{{ route('boardgame.index') }}">Giochi da tavolo</a>
                 </li>
 
 
@@ -25,12 +25,12 @@
                             Ciao, {{ Auth::user()->name }} </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <form action="{{route('logout')}}" method="POST">
+                                <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button class="dropdown-item" type="submit">Logout</button>
                                 </form>
                             </li>
-                            <li><a class="dropdown-item" href=" {{route('boardgame.create')}}">Inserisci un gioco</a></li>
+                            <li><a class="dropdown-item" href=" {{ route('boardgame.create') }}">Inserisci un gioco</a></li>
                         </ul>
                     </li>
                 @endauth
