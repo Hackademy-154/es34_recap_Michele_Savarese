@@ -19,27 +19,34 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome:</label>
-                        <input value="{{old('name')}}" type="text" class="form-control" name="name">
+                        <input value="{{ old('name') }}" type="text" class="form-control" name="name">
                     </div>
 
                     <div class="mb-3">
                         <label for="type" class="form-label">Tipo di gioco:</label>
-                        <input type="text" class="form-control" value="{{old('type')}}" name="type">
+                        <input type="text" class="form-control" value="{{ old('type') }}" name="type">
                     </div>
 
                     <div class="mb-3">
                         <label for="description" class="form-label">Descrizione:</label>
                         <textarea name="description" id="description" class="form-control" cols="30" rows="10">
-                            {{old('description')}}
+                            {{ old('description') }}
                         </textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label for="img" class="form-label">Immagine del gioco:</label>
-                        <input type="file" class="form-control"  name="img" id="img">
+                        <label for="categories" class="form-label">Categorie:</label>
+                        <select name="categories[]" id="categories" class="form-control" multiple>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
-
+                    <div class="mb-3">
+                        <label for="img" class="form-label">Immagine del gioco:</label>
+                        <input type="file" class="form-control" name="img" id="img">
+                    </div>
 
                     <div class="mb-3 text-center pt-3">
                         <button type="sumbit" class="btn btn-dark">Inserisci nel database</button>

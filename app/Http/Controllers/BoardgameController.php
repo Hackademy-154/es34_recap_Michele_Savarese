@@ -42,13 +42,14 @@ class BoardgameController extends Controller implements HasMiddleware
      */
     public function store(Request $request)
     {
-        Boardgame::create([
+        $boardgame=Boardgame::create([
             'name' => $request->name,
             'description' => $request->description,
             'type' => $request->type,
             'img' => $request->has('img') ? $request->file('img')->store('images', 'public') : Null,
             'user_id' => Auth::id(),
         ]);
+        $boardgame->categories()->attach($request->categories);
         return redirect()->route('boardgame.create')->with('success', 'Gioco inserito correttamente');
         //
     }
