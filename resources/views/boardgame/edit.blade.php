@@ -10,7 +10,8 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-                <form action="{{route('boardgame.update', compact('boardgame'))}}" method="POST" class="rounded shadow p-5 bg-white" enctype="multipart/form-data">
+                <form action="{{ route('boardgame.update', compact('boardgame')) }}" method="POST"
+                    class="rounded shadow p-5 bg-white" enctype="multipart/form-data">
                     @if (session('success'))
                         <p class="fts-italic text-success text-center">{{ session('success') }}</p>
                     @endif
@@ -31,6 +32,17 @@
                         <textarea name="description" id="description" class="form-control" cols="30" rows="10">
 {{ $boardgame->description }}
                         </textarea>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="categories" class="form-label">Categorie:</label>
+                        <select name="categories[]" id="categories" class="form-control" multiple>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" @if ($boardgame->categories->contains($category->id)) selected @endif>
+                                    {{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3">

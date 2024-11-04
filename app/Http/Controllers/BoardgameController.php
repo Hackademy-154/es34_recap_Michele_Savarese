@@ -42,7 +42,7 @@ class BoardgameController extends Controller implements HasMiddleware
      */
     public function store(Request $request)
     {
-        $boardgame=Boardgame::create([
+        $boardgame = Boardgame::create([
             'name' => $request->name,
             'description' => $request->description,
             'type' => $request->type,
@@ -85,6 +85,7 @@ class BoardgameController extends Controller implements HasMiddleware
         if ($request->has('img')) {
             $boardgame->update(['img' => $request->file('img')->store('images', 'public')]);
         }
+        $boardgame->categories()->sync($request->categories);
         return redirect()->route('boardgame.edit', compact('boardgame'))->with('success', 'Gioco da tavolo modificato');
 
         //
@@ -95,6 +96,9 @@ class BoardgameController extends Controller implements HasMiddleware
      */
     public function destroy(Boardgame $boardgame)
     {
+        if ($boardgame->categories->count() > 0) {
+            $boardgame->categories()->detach($boardgame->category);
+        };
         $boardgame->delete();
         return redirect()->route('boardgame.index')->with('success', 'Scheda rimossa');
         //
