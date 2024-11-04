@@ -8,6 +8,9 @@
             </div>
         </div>
         <div class="row justify-content-center">
+            @if (session('success'))
+            <p class="fts-italic text-success text-center">{{ session('success') }}</p>
+        @endif
             {{-- @dump($boardgames) --}}
             @foreach ($boardgames as $boardgame)
                 <div class="col-12 col-md-4 d-flex justify-content-center">

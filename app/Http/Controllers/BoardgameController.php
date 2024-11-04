@@ -73,6 +73,11 @@ class BoardgameController extends Controller
             'description' => $request->description,
             'type' => $request->type,
         ]);
+        if ($request->has('img')) {
+            $boardgame->update(['img' => $request->file('img')->store('images', 'public')]);
+        }
+        return redirect()->route('boardgame.edit', compact('boardgame'))->with('success', 'Gioco da tavolo modificato');
+
         //
     }
 
@@ -81,6 +86,8 @@ class BoardgameController extends Controller
      */
     public function destroy(Boardgame $boardgame)
     {
+        $boardgame->delete();
+        return redirect()->route('boardgame.index')->with('success','Scheda rimossa');
         //
     }
 }

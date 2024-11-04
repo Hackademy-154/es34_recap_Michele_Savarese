@@ -12,4 +12,5 @@ Route::post('/boardgame/store',[BoardgameController ::class,'store'])->name('boa
 Route::get('/boardgame/index',[BoardgameController ::class,'index'])->name('boardgame.index');
 Route::get('/boardgame/show/{boardgame}',[BoardgameController ::class,'show'])->name('boardgame.show');
 Route::get('/boardgame/edit/{boardgame}',[BoardgameController ::class,'edit'])->name('boardgame.edit');
-Route::get('/boardgame/update/{boardgame}', [BoardgameController ::class,'update'])->name('boardgame.update');
+Route::put('/boardgame/update/{boardgame}', [BoardgameController ::class,'update'])->name('boardgame.update');
+Route::delete('/boardgame/delete/{boardgame}',[BoardgameController ::class,'destroy'])->name('boardgame.delete');

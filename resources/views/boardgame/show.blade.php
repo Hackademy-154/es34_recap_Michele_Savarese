@@ -20,6 +20,11 @@
                             <p class="card-text">Descrizione: {{ $boardgame->description }}</p>
                             <div class="text-center">
                                 <a href="{{route('boardgame.edit', compact('boardgame'))}}" class="btn btn-primary">Modifica Scheda</a>
+                                <form action="{{route('boardgame.delete', compact('boardgame'))}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" onclick="confirm('Sei sicuro di voler eliminare la scheda?')" type="submit">Elimina Scheda</button>
+                                    </form>
                             </div>
                         </div>
                     </div>
