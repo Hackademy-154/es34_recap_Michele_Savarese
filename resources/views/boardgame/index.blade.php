@@ -19,6 +19,7 @@
                         <div class="card-body">
                             <h5 class="card-title"><span class="fst-italic">{{ $boardgame->name }}</span></h5>
                             <p class="card-text">{{ $boardgame->type }}</p>
+                            <p class="card-text">{{ $boardgame->user->name }}</p>
                             <div class="text-center">
                                 <a href="{{route('boardgame.show', compact('boardgame'))}}" class="btn btn-dark">Vedi dettaglio</a>
                             </div>

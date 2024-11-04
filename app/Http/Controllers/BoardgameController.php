@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Boardgame;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class BoardgameController extends Controller
+class BoardgameController extends Controller implements HasMiddleware
 {
+    public static function middleware()
+    {
+        return [
+            new Middleware('auth', except: ['show', 'index']),
+        ];
+    }
     /**
      * Display a listing of the resource.
      */
@@ -87,7 +95,7 @@ class BoardgameController extends Controller
     public function destroy(Boardgame $boardgame)
     {
         $boardgame->delete();
-        return redirect()->route('boardgame.index')->with('success','Scheda rimossa');
+        return redirect()->route('boardgame.index')->with('success', 'Scheda rimossa');
         //
     }
 }
